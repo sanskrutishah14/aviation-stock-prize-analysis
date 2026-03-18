@@ -1,4 +1,4 @@
-# Python
+#Python
 __pycache__/
 *.pyc
 *.pyo
@@ -6,16 +6,16 @@ __pycache__/
 *.db
 *.sqlite3
 
-# Virtual environment
+#Virtual environment
 venv/
 .env/
 .venv/
 
-# Streamlit cache
+#Streamlit cache
 .streamlit/
 
-# Jupyter
+#Jupyter
 .ipynb_checkpoints/
 
-# macOS system files
+#macOS system files
 .DS_Store
