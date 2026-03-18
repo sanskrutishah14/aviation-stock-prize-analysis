@@ -1,14 +1,12 @@
 import streamlit as st
 import base64
 
-# --- PAGE CONFIGURATION ---
 st.set_page_config(
     page_title="Airline Forecast Dashboard",
     page_icon="✈️",
     layout="wide"
 )
-
-# --- STYLES (minimal edits: sky blue bg + centered buttons) ---
+#styles
 st.markdown("""
     <style>
         .stApp {
@@ -86,12 +84,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# --- FRONT PAGE ---
+#front page
 st.title("✈️ Airline Forecasting and Sensitivity Dashboard")
 st.markdown("### Choose an airline to explore predictions and insights.")
 st.markdown("<hr>", unsafe_allow_html=True)
 
-# --- AIRLINE DATA ---
+#airline data
 airlines = {
     "American Airlines": ("assets/american-airlines-logo.png.png", "american"),
     "Delta Airlines": ("assets/Delta-Air-Lines-Logo.png", "delta"),
@@ -99,7 +97,7 @@ airlines = {
     "Southwest Airlines": ("assets/Southwest_Airlines_logo_2014.svg.png", "southwest")
 }
 
-# --- GRID LAYOUT (unchanged) ---
+#grid
 cols = st.columns(4)
 
 for i, (name, (img_path, page)) in enumerate(airlines.items()):
@@ -116,12 +114,12 @@ for i, (name, (img_path, page)) in enumerate(airlines.items()):
         except Exception:
             st.error(f"⚠️ Could not load {img_path}")
 
-        # --- SELECT AIRLINE BUTTON (auto-centered by CSS above) ---
+        #select airline button
         if st.button(f"Select {name}", key=name):
             st.session_state["selected_airline"] = name
             st.success(f"{name} selected!")
 
-# --- NEXT STEP BUTTONS ---
+#next step button
 st.markdown("<hr>", unsafe_allow_html=True)
 
 if "selected_airline" in st.session_state:

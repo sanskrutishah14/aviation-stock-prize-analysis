@@ -105,7 +105,7 @@ def sensitivity_index(airline):
     # Store the feature column names BEFORE PCA
     feature_cols = df.iloc[:, 3:].select_dtypes(include=[np.number]).columns
     
-    # PCA for Sensitivity Index
+    #PCA for Sensitivity Index
     pca = PCA(0.9)
     pca.fit(x)
     pca_data = pca.transform(x)

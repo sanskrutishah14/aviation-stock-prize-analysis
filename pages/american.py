@@ -9,7 +9,7 @@ from statsmodels.tsa.seasonal import seasonal_decompose
 from pathlib import Path
 import base64
 
-# --- PAGE CONFIG ---
+# --- PAGE CONFIG 
 st.set_page_config(
     page_title="American Airlines Forecast ✈️",
     page_icon="✈️",
@@ -17,7 +17,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- STYLING ---
+#styles
 st.markdown("""
 <style>
 /* GLOBAL */

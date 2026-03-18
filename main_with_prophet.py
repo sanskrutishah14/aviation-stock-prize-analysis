@@ -1,7 +1,3 @@
-# ============================================
-# Aviation Stock Forecasting: SARIMAX + Prophet
-# ============================================
-
 from sklearn.decomposition import PCA
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -22,9 +18,8 @@ from prophet import Prophet
 warnings.filterwarnings("ignore")
 
 
-# -----------------------------
 # 1) Data import & PCA features
-# -----------------------------
+
 def import_and_clean_data(airline):
     """
     Reads {airline}.csv and returns standardized numeric matrix X for PCA and the cleaned DataFrame df.
@@ -101,9 +96,8 @@ def sensitivity_index(airline):
     return df_out, loadings_df, explained_variance_ratio
 
 
-# --------------------------------
 # 2) Seasonality & stationarity utils
-# --------------------------------
+
 def detect_seasonality(series, period=12, threshold=0.1):
     """
     Returns True if seasonal strength > threshold.
@@ -167,9 +161,8 @@ def stationarity_check_conversion(series, seasonal=False):
         return series, 0, 0
 
 
-# --------------------------------
 # 3) SARIMAX search & exog forecasting
-# --------------------------------
+
 def optimize_SARIMAX(parameters_list, d, D, s, endog, exog=None):
     results = []
     for param in tqdm(parameters_list, desc="SARIMAX grid"):
@@ -219,9 +212,8 @@ def forecast_pca_exog(df, steps=8):
     return exog_future
 
 
-# --------------------------------
 # 4) SARIMAX plotting & metrics
-# --------------------------------
+
 def plot_price(df, forecast_index, forecast_mean, fitted_values):
     import matplotlib.dates as mdates
 
@@ -265,9 +257,7 @@ def model_metrics(df, best_model):
     return {"MAE": mae, "RMSE": rmse, "MAPE": mape}
 
 
-# --------------------------------
-# 5) SARIMAX pipeline (your original)
-# --------------------------------
+# 5) SARIMAX pipeline
 def time_series(airline, forecast_periods):
     df, _, _ = sensitivity_index(airline)
     ts = pd.Series(df['Price'].values, index=df['Date'])
@@ -344,9 +334,7 @@ def Airline(airline, forecast_periods):
     return ts, loadings_df, explained_variance_ratio, fig_forecast, metrics, forecast_summary
 
 
-# --------------------------------
 # 6) Prophet integration (with PCA regressors)
-# --------------------------------
 def prepare_prophet_frame(df):
     """
     df: output of sensitivity_index(airline) -> has Date, Price, PC1..PCk
